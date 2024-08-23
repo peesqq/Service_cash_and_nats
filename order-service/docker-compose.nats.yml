@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  nats-streaming:
+    image: nats-streaming:latest
+    container_name: nats-streaming
+    ports:
+      - "4222:4222"
+      - "8222:8222"
+    environment:
+      - NATS_STREAMING_CLUSTER_ID=test-cluster
+      - NATS_STREAMING_STORE=FILE
+      - NATS_STREAMING_DIR=/data/stan
+    volumes:
+      - 'nats-data:/data/stan'
+
+volumes:
+  nats-data:
